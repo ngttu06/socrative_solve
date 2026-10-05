@@ -1,0 +1,9 @@
+/* Only answer options identified by the content script are affected. */
+[data-sc-cursor="default"],
+[data-sc-cursor="default"] * {
+  cursor: default !important;
+}
+[data-sc-cursor="pointer"],
+[data-sc-cursor="pointer"] * {
+  cursor: pointer !important;
+}

@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Socrative · AI Cursor</title>
+  <link rel="stylesheet" href="popup.css">
+  <script src="core.js" defer></script>
+  <script src="popup.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="mark" aria-hidden="true">S<span>↗</span></div>
+      <div><p class="eyebrow">SOCRATIVE / PRACTICE</p><h1>AI Cursor</h1></div>
+      <span class="tag">1.2</span>
+    </header>
+
+    <section class="activation" aria-label="Điều khiển gợi ý">
+      <label class="toggle-row" for="enabled">
+        <span><strong>Gợi ý bằng con trỏ</strong><small>Tự giải toàn bộ bài theo batch</small></span>
+        <input id="enabled" type="checkbox" role="switch" disabled>
+      </label>
+      <p class="consent">Khi bật, toàn bộ câu hỏi và lựa chọn từ API Socrative được gửi đến <strong>GateCheap</strong>, tối đa 5 câu/lượt. Có thể tính phí cho cả bài. Chỉ dùng cho ôn tập được phép.</p>
+    </section>
+
+    <section class="status-card" aria-labelledby="status-heading">
+      <div class="section-heading"><h2 id="status-heading">Trạng thái</h2><span id="phase" class="badge">Đang tải</span></div>
+      <p id="status" role="status" aria-live="polite">Đang kết nối extension…</p>
+      <p id="source" class="meta"></p>
+      <details id="explanation-wrap" hidden><summary>Giải thích của AI</summary><p id="explanation"></p></details>
+      <button id="retry" type="button" class="primary" disabled>Giải / thử lại câu hiện tại <span aria-hidden="true">↗</span></button>
+    </section>
+
+    <section class="batch-section" aria-labelledby="batch-heading">
+      <div class="section-heading"><h2 id="batch-heading">Giải hàng loạt</h2><span id="batch-count" class="meta">0 / 0 câu</span></div>
+      <progress id="batch-progress" value="0" max="1" aria-label="Tiến độ xử lý batch"></progress>
+      <p id="batch-status" class="helper" role="status" aria-live="polite">Chờ danh sách câu hỏi từ API Socrative.</p>
+      <button id="batch-retry" type="button" class="secondary" disabled>Thử lại câu lỗi / chưa chắc chắn</button>
+    </section>
+
+    <section class="data-section" aria-labelledby="data-heading">
+      <div class="section-heading"><h2 id="data-heading">Dữ liệu API</h2><span id="api-count" class="meta">0 câu từ API</span></div>
+      <p class="helper">Tự nhận phản hồi API khi mở bài. Nếu chưa có dữ liệu, tải lại trang hoặc mở lại bài Socrative.</p>
+      <div class="actions">
+        <button id="clear" type="button" class="secondary">Xóa bộ nhớ</button>
+      </div>
+      <p id="notice" role="status" aria-live="polite"></p>
+    </section>
+
+    <footer>
+      <div class="model"><span class="dot" aria-hidden="true"></span><span id="model">gpt-6.1-sol</span><span class="provider">GateCheap</span></div>
+      <p>AI có thể sai. Bàn tay = đáp án AI gợi ý, không phải đáp án chuẩn. Không tự chọn hoặc nộp bài.</p>
+    </footer>
+  </main>
+</body>
+</html>

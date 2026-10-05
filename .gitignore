@@ -1,0 +1,7 @@
+extension/config.private.js
+*.har
+Socrative - Student.html
+Socrative - Student_files/
+.test-artifacts/
+node_modules/
+*.zip

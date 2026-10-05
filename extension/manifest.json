@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Socrative · AI Cursor",
+  "description": "Gợi ý đáp án bằng con trỏ cho bài ôn tập Socrative. AI có thể sai; không tự chọn hoặc nộp bài.",
+  "version": "1.2.0",
+  "minimum_chrome_version": "111",
+  "permissions": ["storage", "alarms"],
+  "host_permissions": [
+    "https://b.socrative.com/*",
+    "https://student.socrative.com/*",
+    "https://gatecheap.vn/*"
+  ],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "Socrative · AI Cursor", "default_popup": "popup.html" },
+  "content_scripts": [
+    {
+      "matches": ["https://b.socrative.com/*", "https://student.socrative.com/*"],
+      "js": ["network-hook.js"],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": ["https://b.socrative.com/*", "https://student.socrative.com/*"],
+      "js": ["core.js", "content.js"],
+      "css": ["cursor.css"],
+      "run_at": "document_start",
+      "world": "ISOLATED"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; connect-src https://gatecheap.vn"
+  }
+}
